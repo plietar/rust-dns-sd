@@ -1,0 +1,5 @@
+[package]
+name = "dns-sd"
+version = "0.1.0"
+authors = ["Paul Lietar <paul@lietar.net>"]
+license = "MIT"
