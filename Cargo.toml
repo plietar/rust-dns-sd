@@ -1,5 +1,8 @@
 [package]
 name = "dns-sd"
 version = "0.1.0"
+description = "Rust binding for dns-sd"
+homepage = "https://github.com/plietar/rust-dns-sd"
+repository = "https://github.com/plietar/rust-dns-sd"
 authors = ["Paul Lietar <paul@lietar.net>"]
 license = "MIT"
