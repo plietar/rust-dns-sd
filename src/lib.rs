@@ -79,6 +79,7 @@ mod ffi {
     }
 }
 
+#[derive(Debug)]
 pub struct DNSService {
     sd_ref: ffi::DNSServiceRef,
 }
