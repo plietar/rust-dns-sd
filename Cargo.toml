@@ -10,3 +10,6 @@ license = "MIT"
 
 [build-dependencies]
 pkg-config = "~0.3.6"
+
+[dependencies]
+libc = "0.2"
