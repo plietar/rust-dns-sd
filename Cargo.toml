@@ -1,7 +1,7 @@
 [package]
 name = "dns-sd"
 build = "build.rs"
-version = "0.1.2"
+version = "0.1.3"
 description = "Rust binding for dns-sd"
 homepage = "https://github.com/plietar/rust-dns-sd"
 repository = "https://github.com/plietar/rust-dns-sd"
