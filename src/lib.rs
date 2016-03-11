@@ -123,13 +123,13 @@ impl DNSService {
             ffi::DNSServiceRegister(&mut sd_ref as *mut _,
                                     0,
                                     0,
-                                    name.map_or(null(), |s| s.as_ptr()),
+                                    name.as_ref().map_or(null(), |s| s.as_ptr()),
                                     regtype.as_ptr(),
-                                    domain.map_or(null(), |s| s.as_ptr()),
-                                    host.map_or(null(), |s| s.as_ptr()),
+                                    domain.as_ref().map_or(null(), |s| s.as_ptr()),
+                                    host.as_ref().map_or(null(), |s| s.as_ptr()),
                                     port.to_be(),
                                     txt_data.len() as u16,
-                                    if txt_data.len() == 0 {
+                                    if txt_data.is_empty() {
                                         null()
                                     } else {
                                         txt_data.as_ptr()
@@ -137,6 +137,15 @@ impl DNSService {
                                     None,
                                     null_mut())
         };
+
+        // We must be sure these stay are still alive during the DNSServiceRegister call
+        // Because we pass them as raw pointers, rust's borrow checker is useless there
+        // If they are still valid at this point, then we're good
+        drop(name);
+        drop(regtype);
+        drop(domain);
+        drop(host);
+        drop(txt_data);
 
         if err == ffi::DNSServiceErrorType::NoError {
             Ok(DNSService { sd_ref: sd_ref })
